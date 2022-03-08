@@ -22,14 +22,20 @@ public:
     virtual bool isOpen() = 0;
 
     /**
+     * Triggers any last operations and marks the window as closed.
+     * The next call to `isOpen` will return `false`.
+     *
      * @brief Close the window.
      */
     virtual void close() = 0;
 
     /**
-     * @brief Refreshes and rerenders the window.
+     * All sprites are drawn in the order they are added.
+     * The last sprite added is drawn on top of the others.
+     *
+     * @brief Refreshes and redraw the sprites on the window.
      */
-    virtual void refresh() = 0;
+    virtual void display() = 0;
 
     /**
      * @brief Destroy the display manager.
