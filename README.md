@@ -6,6 +6,7 @@ Effort to make a common API for the Arcade project.
 
 ```bash
 doxygen Doxyfile
+xdg-open html/index.html  # or   firefox html/index.html
 ```
 
 ## REQUIREMENTS of implementation
