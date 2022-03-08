@@ -49,7 +49,7 @@ public:
      * @brief Loads the specified display manager.
      * @throw std::exception if a display is already loaded.
      */
-    virtual void loadDisplay(IDisplayManager* displayManager) = 0;
+    virtual void loadDisplay(const IDisplayManager& displayManager) = 0;
 
     /**
      * @brief Unloads the currently loaded display manager.
