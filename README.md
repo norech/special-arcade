@@ -2,6 +2,8 @@
 
 Effort to make a common API for the Arcade project.
 
+> Note: This is not a game engine. It is a common interface for game engines to do basic operations.
+
 ## Generate documentation
 
 ```bash

@@ -5,10 +5,14 @@
 
 #pragma once
 
-class IDisplayManager;
-
 namespace arc {
 
+class IDisplayManager;
+
+/**
+ * @brief The game interface.
+ * @details This interface is used to represent a game.
+ */
 class IGame {
 public:
     virtual ~IGame() = default;
@@ -48,8 +52,9 @@ public:
     /**
      * @brief Loads the specified display manager.
      * @throw std::exception if a display is already loaded.
+     * @note It takes a pointer to avoid interface dependency.
      */
-    virtual void loadDisplay(const IDisplayManager& displayManager) = 0;
+    virtual void loadDisplay(IDisplayManager* displayManager) = 0;
 
     /**
      * @brief Unloads the currently loaded display manager.
