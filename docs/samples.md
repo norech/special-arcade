@@ -21,8 +21,8 @@ public:
     ~Game() = default;
 
     void init() override {
-        _palette->setColor(0, 'A', RED);
-        _palette->setColor(1, 'E', GREEN);
+        _palette.setColor(0, 'A', RED);
+        _palette.setColor(1, 'E', GREEN);
     }
 
     void update(float dt) override {
@@ -38,12 +38,12 @@ public:
     void render() override {
         // remove all points from the previous frame
         // fills the canvas with transparent color
-        _canvas->clear();
+        _canvas.clear();
 
         // on ncurses, a red 'A' and a green 'E' will be displayed
         // on graphical, both a red and a green square will be displayed
-        _canvas->drawPoint(0, 0, _palette[0]);
-        _canvas->drawPoint(1, 1, _palette[1]);
+        _canvas.drawPoint(0, 0, _palette[0]);
+        _canvas.drawPoint(1, 1, _palette[1]);
 
         // draw the canvas on the screen
         _display->draw(_canvas);
