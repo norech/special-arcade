@@ -5,6 +5,7 @@
 #pragma once
 
 #include "IColor.hpp"
+#include "IGraphic.hpp"
 
 namespace arc {
 
@@ -18,16 +19,31 @@ public:
     virtual ~ICanvas() = default;
 
     /**
-     * Clear the canvas. Fills the canvas with a transparent color.
+     * @brief Start the drawing of the canvas.
      */
-    void clear();
+    virtual void startDraw();
+
+    /**
+     * @brief Stop the drawing of the canvas.
+     */
+    virtual void endDraw();
+
+    /**
+     * @brief Loads the new graphic library.
+     */
+    virtual void loadGraphic(const IGraphic& graphic);
+
+    /**
+     * @brief Unloads the previous graphic library.
+     */
+    virtual void unloadGraphic();
 
     /**
      * Draws a point on the canvas.
      * A point may represent a single pixel or any other single unit in a
      * grid.
      */
-    void drawPoint(int x, int y, const IColor &color);
+    virtual void drawPoint(int x, int y, const IColor& color);
 };
 
 }  // namespace arc

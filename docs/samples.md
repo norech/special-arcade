@@ -36,9 +36,8 @@ public:
     }
 
     void render() override {
-        // remove all points from the previous frame
-        // fills the canvas with transparent color
-        _canvas.clear();
+        // clears the previous canvas and prepare drawing
+        _canvas.startDraw();
 
         // on ncurses, a red 'A' and a green 'E' will be displayed
         // on graphical, both a red and a green square will be displayed
@@ -46,11 +45,11 @@ public:
         _canvas.drawPoint(1, 1, _palette[1]);
 
         // draw the canvas on the screen
-        _display->draw(_canvas);
+        _canvas.endDraw();
 
         // ensure the display is rendered and do all the necessary
         // operations to display everything drawn on the display
-        _display->render();
+        _graphic->render();
     }
 
     void destroy() override {
@@ -59,9 +58,11 @@ public:
 
     void loadGraphic(IGraphic* graphic) override {
         _graphic = graphic;
+        canvas.loadGraphic(graphic);
     }
 
     void unloadDisplay() override {
+        canvas.unloadGraphic();
         _graphic = nullptr;
     }
 

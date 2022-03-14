@@ -6,7 +6,6 @@
 #pragma once
 
 #include "Event.hpp"
-#include "ICanvas.hpp"
 
 namespace arc {
 
@@ -37,11 +36,6 @@ public:
      * @brief Close the window.
      */
     virtual void close() = 0;
-
-    /**
-     * Draws the canvas on the screen buffer.
-     */
-    virtual void draw(ICanvas& canvas) = 0;
 
     /**
      * Render the screen buffer on the screen.
