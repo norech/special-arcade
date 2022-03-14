@@ -1,6 +1,6 @@
 # SpecialArcade
 
-[See interfaces](namespacearc.html).
+[See interfaces](annotated.html).
 
 [See REQUIREMENTS of implementation](md_README.html).
 
