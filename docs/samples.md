@@ -10,7 +10,7 @@
 
 class Game : public IGame {
 private:
-    IDisplayManager* _display;
+    IGraphic *_graphic;
     // ...
 
     Canvas _canvas; // ICanvas implementation
@@ -57,12 +57,12 @@ public:
         // Destroy game here
     }
 
-    void loadDisplay(IDisplayManager* displayManager) {
-        _display = displayManager;
+    void loadGraphic(IGraphic* graphic) override {
+        _graphic = graphic;
     }
 
-    void unloadDisplay() {
-        _display = nullptr;
+    void unloadDisplay() override {
+        _graphic = nullptr;
     }
 
 }

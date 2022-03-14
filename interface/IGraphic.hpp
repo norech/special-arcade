@@ -11,17 +11,17 @@
 namespace arc {
 
 /**
- * @brief The display manager interface.
+ * @brief The graphical library interface.
  * @details This interface is used to represent and manage a display and its
  * events.
  */
 
-class IDisplayManager {
+class IGraphic {
 public:
-    virtual ~IDisplayManager() = default;
+    virtual ~IGraphic() = default;
 
     /**
-     * @brief Initialize the display manager.
+     * @brief Initialize the graphical library.
      */
     virtual void init() = 0;
 
@@ -59,7 +59,7 @@ public:
     virtual bool pollEvent(Event& input) = 0;
 
     /**
-     * @brief Destroy the display manager.
+     * @brief Destroy the graphical library.
      */
     virtual void destroy() = 0;
 };

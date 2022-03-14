@@ -7,7 +7,7 @@
 
 namespace arc {
 
-class IDisplayManager;
+class IGraphic;
 
 /**
  * @brief The game interface.
@@ -25,7 +25,7 @@ public:
      *
      * @brief Initialize the game.
      * @note Behaviour is undefined if `init` is called when no
-     * display manager is loaded.
+     * graphical library is loaded.
      */
     virtual void init() = 0;
 
@@ -36,7 +36,7 @@ public:
      * @brief Update the game.
      * @param dt Delta time.
      * @note Behaviour is undefined if `update` is called when no
-     * display manager is loaded.
+     * graphical library is loaded.
      */
     virtual void update(float dt) = 0;
 
@@ -45,21 +45,21 @@ public:
      *
      * @brief Render the game.
      * @note Behaviour is undefined if `render` is called when no
-     * display manager is loaded.
+     * graphical library is loaded.
      */
     virtual void render() = 0;
 
     /**
-     * @brief Loads the specified display manager.
+     * @brief Loads the specified graphical library.
      * @throw std::exception if a display is already loaded.
      * @note It takes a pointer to avoid interface dependency.
      */
-    virtual void loadDisplay(IDisplayManager* displayManager) = 0;
+    virtual void loadGraphic(IGraphic* graphic) = 0;
 
     /**
-     * @brief Unloads the currently loaded display manager.
+     * @brief Unloads the currently loaded graphical library.
      */
-    virtual void unloadDisplay() = 0;
+    virtual void unloadGraphic() = 0;
 
     /**
      * Triggers any last operations before the game is destroyed.
