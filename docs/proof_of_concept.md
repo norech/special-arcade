@@ -29,7 +29,7 @@ public:
 
 ## `Palette` class
 ```cpp
-namespace arc {
+namespace arc::grph {
 
 class Palette : public IPalette {
 private:
@@ -64,41 +64,25 @@ public:
 ## `Canvas` class
 
 ```cpp
-namespace arc {
+namespace arc::grph {
 
 class Canvas : public ICanvas {
+    // ... common abstract implementation between all graphic libraries
+};
+
+class SfmlCanvas : public Canvas {
 private:
-    MyGraphic* _graphic; // IGraphic implementation
+    SfmlGraphic* _graphic; // IGraphic implementation
 public:
-    Canvas() = default;
-    ~ICanvas() = default;
-
-    void loadGraphic(IGraphic& graphic) override {
-        // here we get the graphic object so we can use it to draw
-        // on the screen later.
-
-        // we cast the graphic object to MyGraphic so we can use custom
-        // methods to draw on the screen.
-
-        _graphic = dynamic_cast<MyGraphic*>(&graphic);
+    SfmlCanvas(IGraphic* graphic) {
+        _graphic = dynamic_cast<SfmlGraphic*>(&graphic);
 
         if (_graphic == nullptr) {
-            throw std::runtime_error("IGraphic is not a MyGraphic");
+            throw std::runtime_error("Graphic is not an SfmlGraphic!");
         }
-
-        // we can then for example create a sprite to represent the canvas.
-        // e.g.  SomeSprite& _internalSprite = _graphic.createCanvasSprite();
-        // no specific implementation of SomeSprite is prescripted.
     }
 
-    void unloadGraphic() override {
-        // here we can unload the graphic object
-
-        // we can for example remove a sprite that represent the canvas
-        // and destroy it.
-        // e.g.  _graphic.destroyCanvasSprite(_internalSprite);
-        _graphic = nullptr;
-    }
+    ~SfmlCanvas() = default;
 
     void startDraw() override {
         // clear the canvas of the previous frame...

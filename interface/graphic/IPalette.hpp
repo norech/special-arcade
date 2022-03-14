@@ -5,14 +5,16 @@
 
 #pragma once
 
-#include "ColorCode.hpp"
+#include "../common/ColorCode.hpp"
 
 namespace arc {
-
 class IColor;
+}
+
+namespace arc::grph {
 
 /**
- * @brief The palette interface.
+ * @brief Graphic - The palette interface.
  * @details This interface is used to represent a palette,
  * containing colors to draw.
  */
@@ -36,4 +38,4 @@ public:
     virtual const IColor& operator[](int index) const = 0;
 };
 
-}  // namespace arc
+}  // namespace arc::grph

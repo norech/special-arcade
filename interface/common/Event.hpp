@@ -7,7 +7,7 @@
 namespace arc {
 
 /**
- * @brief The event class.
+ * @brief Common - The event class.
  * @details This class is used to represent an event.
  */
 class Event {

@@ -8,7 +8,7 @@
 namespace arc {
 
 /**
- * @brief The color codes.
+ * @brief Common - The color codes.
  * @details An enum with common color codes that can be used.
  */
 enum ColorCode {

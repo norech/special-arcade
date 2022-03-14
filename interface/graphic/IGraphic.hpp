@@ -5,12 +5,13 @@
 
 #pragma once
 
-#include "Event.hpp"
+#include "../common/Event.hpp"
+#include "./ICanvas.hpp"
 
-namespace arc {
+namespace arc::grph {
 
 /**
- * @brief The graphical library interface.
+ * @brief Graphic - The graphical library interface.
  * @details This interface is used to represent and manage a display and its
  * events.
  */
@@ -50,7 +51,21 @@ public:
      * The input is then available in the `getLastInput` method.
      * @return false No input was found since the last call to this method.
      */
-    virtual bool pollEvent(Event& input) = 0;
+    virtual bool pollEvent(Event &input) = 0;
+
+    /**
+     * @brief Loads the canvas.
+     * Is a modifiable reference to the canvas.
+     * @note May be implemented by assigning the canvas argument to a
+     * canvas matching the current graphical library.
+     */
+    virtual void loadCanvas(ICanvas &canvas) = 0;
+
+    /**
+     * @brief Unloads the canvas.
+     * Is a modifiable reference to the canvas.
+     */
+    virtual void unloadCanvas(ICanvas &canvas) = 0;
 
     /**
      * @brief Destroy the graphical library.
@@ -58,4 +73,4 @@ public:
     virtual void destroy() = 0;
 };
 
-}  // namespace arc
+}  // namespace arc::grph

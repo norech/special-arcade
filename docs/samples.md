@@ -10,7 +10,7 @@
 
 class Game : public IGame {
 private:
-    IGraphic *_graphic;
+    IGraphic* _graphic;
     // ...
 
     Canvas _canvas; // ICanvas implementation
@@ -58,12 +58,13 @@ public:
 
     void loadGraphic(IGraphic* graphic) override {
         _graphic = graphic;
-        canvas.loadGraphic(graphic);
+        _graphic->loadCanvas(_canvas);
     }
 
     void unloadDisplay() override {
-        canvas.unloadGraphic();
-        _graphic = nullptr;
+        _graphic->unloadCanvas(_canvas);
+        _graphic->destroy();
+        delete _graphic;
     }
 
 }

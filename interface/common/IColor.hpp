@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include "ColorCode.hpp"
+#include "./ColorCode.hpp"
 
 namespace arc {
 
 /**
- * @brief The color interface.
+ * @brief Common - The color interface.
  * @details This interface is used to represent a color in a palette.
  */
 class IColor {

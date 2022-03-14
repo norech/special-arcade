@@ -5,12 +5,14 @@
 
 #pragma once
 
-namespace arc {
-
+namespace arc::grph {
 class IGraphic;
+}
+
+namespace arc::game {
 
 /**
- * @brief The game interface.
+ * @brief Game - The game interface.
  * @details This interface is used to represent a game.
  */
 class IGame {
@@ -54,7 +56,7 @@ public:
      * @throw std::exception if a display is already loaded.
      * @note It takes a pointer to avoid interface dependency.
      */
-    virtual void loadGraphic(IGraphic* graphic) = 0;
+    virtual void loadGraphic(grph::IGraphic* graphic) = 0;
 
     /**
      * @brief Unloads the currently loaded graphical library.
@@ -69,4 +71,4 @@ public:
     virtual void destroy() = 0;
 };
 
-}  // namespace arc
+}  // namespace arc::game

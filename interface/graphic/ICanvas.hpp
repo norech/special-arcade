@@ -4,13 +4,12 @@
  */
 #pragma once
 
-#include "IColor.hpp"
-#include "IGraphic.hpp"
+#include "../common/IColor.hpp"
 
-namespace arc {
+namespace arc::grph {
 
 /**
- * @brief The canvas interface.
+ * @brief Graphic - The canvas interface.
  * @details This interface is used to represent a canvas,
  * where basic shapes can be drawn.
  */
@@ -29,16 +28,6 @@ public:
     virtual void endDraw();
 
     /**
-     * @brief Loads the new graphic library.
-     */
-    virtual void loadGraphic(const IGraphic& graphic);
-
-    /**
-     * @brief Unloads the previous graphic library.
-     */
-    virtual void unloadGraphic();
-
-    /**
      * Draws a point on the canvas.
      * A point may represent a single pixel or any other single unit in a
      * grid.
@@ -46,4 +35,4 @@ public:
     virtual void drawPoint(int x, int y, const IColor& color);
 };
 
-}  // namespace arc
+}  // namespace arc::grph
