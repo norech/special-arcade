@@ -7,6 +7,7 @@ Effort to make a common API for the Arcade project.
 ## Generate documentation
 
 ```bash
+rm -R html latex # remove existing documentation
 doxygen Doxyfile
 xdg-open html/index.html  # or   firefox html/index.html
 ```
