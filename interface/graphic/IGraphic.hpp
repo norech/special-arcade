@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "../common/Event.hpp"
 #include "./ICanvas.hpp"
 
@@ -55,17 +57,17 @@ public:
 
     /**
      * @brief Loads the canvas.
-     * Is a modifiable reference to the canvas.
+     * Is a modifiable shared pointer to the canvas.
      * @note May be implemented by assigning the canvas argument to a
      * canvas matching the current graphical library.
      */
-    virtual void loadCanvas(ICanvas &canvas) = 0;
+    virtual void loadCanvas(std::shared_ptr<ICanvas> &canvas) = 0;
 
     /**
      * @brief Unloads the canvas.
-     * Is a modifiable reference to the canvas.
+     * Is a modifiable shared pointer to the canvas.
      */
-    virtual void unloadCanvas(ICanvas &canvas) = 0;
+    virtual void unloadCanvas(std::shared_ptr<ICanvas> &canvas) = 0;
 
     /**
      * @brief Destroy the graphical library.

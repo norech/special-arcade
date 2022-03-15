@@ -13,7 +13,7 @@ private:
     IGraphic* _graphic;
     // ...
 
-    Canvas _canvas; // ICanvas implementation
+    std::shared_ptr<Canvas> _canvas; // ICanvas implementation
     Palette _palette; // IPalette implementation
 
 public:
@@ -37,15 +37,15 @@ public:
 
     void render() override {
         // clears the previous canvas and prepare drawing
-        _canvas.startDraw();
+        _canvas->startDraw();
 
         // on ncurses, a red 'A' and a green 'E' will be displayed
         // on graphical, both a red and a green square will be displayed
-        _canvas.drawPoint(0, 0, _palette[0]);
-        _canvas.drawPoint(1, 1, _palette[1]);
+        _canvas->drawPoint(0, 0, _palette[0]);
+        _canvas->drawPoint(1, 1, _palette[1]);
 
         // draw the canvas on the screen
-        _canvas.endDraw();
+        _canvas->endDraw();
 
         // ensure the display is rendered and do all the necessary
         // operations to display everything drawn on the display
