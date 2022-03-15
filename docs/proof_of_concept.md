@@ -103,3 +103,59 @@ public:
 
 }  // namespace arc
 ```
+
+## Partial `IGraphic` class
+
+```cpp
+namespace arc::grph {
+
+class SfmlGraphic : public IGraphic {
+private:
+    sfml::Window _window;
+public:
+    SfmlGraphic() {}
+
+    ~SfmlGraphic() = default;
+
+    // ...
+
+    bool pollEvent(Event &event) override {
+        sfml::Event sfmlEvent;
+
+        // poll the event, and if there is no event, return false
+        if (!_window.pollEvent(sfmlEvent)) return false;
+
+        // handle window close
+        if (sfmlEvent.type == sfml::Event::Closed) {
+            event.type = Event::QUIT;
+            return true;
+        }
+
+        // handle keyboard press
+        if (sfmlEvent.type == sfml::Event::KeyPressed) {
+            if (sfmlEvent.key.code < sf::Keyboard::A ||
+                sfmlEvent.key.code > sf::Keyboard::Z) {
+                // unknown key, ignore
+                return false;
+            }
+            event.type = Event::KEY_PRESSED;
+            event.keyboardInput.keyCode
+                = (sfmlEvent.key.code - sf::Keyboard::A) + arc::KeyCode::A;
+            return true;
+        }
+
+        // unknown event return false
+        return false;
+    }
+
+    void loadCanvas(std::shared_ptr<ICanvas> &canvas) override {
+        canvas = std::make_shared<SfmlCanvas>(this);
+    }
+
+    void unloadCanvas(std::shared_ptr<ICanvas> &canvas) override {
+        delete canvas;
+    };
+};
+
+}  // namespace arc
+```
