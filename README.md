@@ -19,6 +19,8 @@ xdg-open html/index.html  # or   firefox html/index.html
 and `-fno-gnu-unique` flags.
 - The compiled games and graphical libraries `.so` files MUST provide an
 `expose` function placed inside of `extern "C" { ... }`.
+- Each graphical libraries `.so` files must provide its dependencies (e.g.
+`arcade-sfml.so` must be compiled with `-lsfml-graphics` and `-lsfml-window`).
 - The `expose` function of games should take no arguments and MUST
 return a pointer to `arc::IGame *` (no smart pointers shall be returned).
 - The `expose` function of graphical libraries should take no arguments and
