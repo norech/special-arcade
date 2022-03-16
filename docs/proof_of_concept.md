@@ -32,30 +32,27 @@ public:
 namespace arc::grph {
 
 class Palette : public IPalette {
-private:
-    std::array<Color, 16> _colors; // 16 colors per palette
-    std::array<bool, 16> _hasColor; // 16 colors per palette
+ private:
+    std::array<std::unique_ptr<Color>, 16> _colors; // 16 colors per palette
 
-public:
-    Palette() {
-        _hasColor.fill(false);
-    }
+ public:
+    Palette() { _colors.fill(nullptr); }
 
     ~Palette() = default;
 
-    void setColor(int index, char symbol, ColorCode colorCode) override {
-        _colors[index] = Color(colorCode, symbol);
-        _hasColor[index] = true;
+    void setColor(int index, char symbol, ColorCode colorCode) override
+    {
+        _colors[index] = std::make_unique<Color>(colorCode, symbol);
     }
 
-    const IColor& operator[](int index) const override {
-        if (_hasColor[index]) {
-            return _colors[index];
+    const IColor& operator[](int index) const override
+    {
+        if (_colors[index]) {
+            return *_colors[index];
         } else {
             throw std::out_of_range("Color not found");
         }
     }
-
 };
 
 }  // namespace arc
