@@ -155,3 +155,30 @@ public:
 
 }  // namespace arc
 ```
+
+# Core loader
+
+```cpp
+int main(void)
+{
+    IGame* game = GameLoader::openAndGetExpose("./lib/arcade_pacman.so");
+    IGraphic* graphic = GraphicLoader::openAndGetExpose("./lib/arcade_sdl.so");
+
+    game->init();
+    graphic->init();
+
+    game->loadGraphic(graphic);
+    while (graphic->isOpen()) {
+        game->update(graphic->tick());
+        game->render();
+    }
+    game->unloadGraphic();
+
+    graphic->destroy();
+    game->destroy();
+
+    GraphicLoader::close(graphic);
+    GameLoader::close(game);
+    return 0;
+}
+```
