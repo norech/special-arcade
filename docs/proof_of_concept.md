@@ -36,13 +36,12 @@ class Palette : public IPalette {
     std::array<std::unique_ptr<Color>, 16> _colors; // 16 colors per palette
 
  public:
-    Palette() { _colors.fill(nullptr); }
-
+    Palette() = default;
     ~Palette() = default;
 
     void setColor(int index, char symbol, ColorCode colorCode) override
     {
-        _colors[index] = std::make_unique<Color>(colorCode, symbol);
+        _colors[index].reset(new Color(colorCode, symbol));
     }
 
     const IColor& operator[](int index) const override
