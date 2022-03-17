@@ -36,6 +36,9 @@ public:
     }
 
     void render() override {
+        // clear the screen
+        _graphic->clear();
+
         // clears the previous canvas and prepare drawing
         _canvas->startDraw();
 
