@@ -22,15 +22,23 @@ and `-fno-gnu-unique` flags.
 library must be used.
 - The compiled games and graphical libraries `.so` files MUST provide an
 `expose` function placed inside of `extern "C" { ... }`.
+- The compiled games and graphical libraries `.so` files MUST also provide an
+`unexpose` function placed inside of `extern "C" { ... }`.
 - Each graphical libraries `.so` files must provide its dependencies (e.g.
-`arcade-sfml.so` must be compiled with `-lsfml-graphics` and `-lsfml-window`).
+`arcade_sfml.so` must be compiled with `-lsfml-graphics` and `-lsfml-window`).
 - The `expose` function of games should take no arguments and MUST
 return a pointer to `arc::IGame *` (no smart pointers shall be returned).
 - The `expose` function of graphical libraries should take no arguments and
-MUST return a pointer to `arc::IDisplayManager *` (no smart pointers shall be
+MUST return a pointer to `arc::IGraphic *` (no smart pointers shall be
 returned).
-- The pointers returned by the `expose` functions SHALL be managed and
-deleted manually by the caller of the shared library, before calling `dlclose`.
+- The `unexpose` function of games should not return anything and MUST take
+an `arc::IGame *` argument. It should deallocate the specified pointer.
+- The `unexpose` function of graphical libraries should not return anything and
+MUST take an `arc::IGraphic *` argument. It should deallocate the specified
+pointer.
+- The pointers returned by the `expose` functions SHALL be deleted by the
+caller of the shared library, by calling the `unexpose` function before
+calling `dlclose`.
 
 
 ## Keep your interfaces up to date more easily
