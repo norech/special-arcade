@@ -177,8 +177,55 @@ int main(void)
     graphic->destroy();
     game->destroy();
 
-    GraphicLoader::close(graphic);
-    GameLoader::close(game);
+    GraphicLoader::unexposeAndClose(graphic);
+    GameLoader::unexposeAndClose(game);
+    return 0;
+}
+```
+
+# Basic core loader with graphical library switch
+
+```cpp
+int main(void)
+{
+    std:array<std::string> graphics = {
+        "./lib/arcade_sdl.so",
+        "./lib/arcade_sfml.so"
+    };
+    int currentGraphicId = 0;
+
+    IGame* game = GameLoader::openAndGetExpose("./lib/arcade_pacman.so");
+    IGraphic* graphic = GraphicLoader::openAndGetExpose(graphics[currentGraphicId]);
+
+    game->init();
+    graphic->init();
+
+    game->loadGraphic(graphic);
+
+    while (graphic->isOpen()) {
+        game->update(graphic->tick());
+        game->render();
+
+        if (game->mustLoadAnotherGraphic()) {
+            game->unloadGraphic();
+            graphic->destroy();
+            GraphicLoader::unexposeAndClose(graphic);
+
+            // switch to the next library
+            currentGraphicId = (currentGraphicId + 1) % graphics.size();
+            graphic = GraphicLoader::openAndGetExpose(graphics[currentGraphicId]);
+            graphic->init();
+            game->loadGraphic(graphic);
+        }
+    }
+
+    game->unloadGraphic();
+
+    graphic->destroy();
+    game->destroy();
+
+    GraphicLoader::unexposeAndClose(graphic);
+    GameLoader::unexposeAndClose(game);
     return 0;
 }
 ```
