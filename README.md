@@ -17,6 +17,9 @@ xdg-open html/index.html  # or   firefox html/index.html
 - The interfaces in the `interface/` folder MUST be left AS IS and implemented.
 - The games and graphical libraries `.so` files MUST be compiled with the `-fPIC`
 and `-fno-gnu-unique` flags.
+- To ensure full compatibility, `.so` files must also be compiled with the
+`-static-libgcc` and `-static-libstdc++` flags, or the same version of GLIBC
+library must be used.
 - The compiled games and graphical libraries `.so` files MUST provide an
 `expose` function placed inside of `extern "C" { ... }`.
 - Each graphical libraries `.so` files must provide its dependencies (e.g.
