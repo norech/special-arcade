@@ -18,7 +18,7 @@ xdg-open html/index.html  # or   firefox html/index.html
 - The games and graphical libraries `.so` files MUST be compiled with the `-fPIC`
 and `-fno-gnu-unique` flags.
 - To ensure full compatibility, `.so` files must also be compiled with the
-`-static-libgcc` and `-static-libstdc++` flags, or the same version of GLIBC
+`-static-libgcc` flag, or the same version of GLIBC
 library must be used.
 - The compiled games and graphical libraries `.so` files MUST provide an
 `expose` function placed inside of `extern "C" { ... }`.
@@ -39,6 +39,9 @@ pointer.
 - The pointers returned by the `expose` functions SHALL be deleted by the
 caller of the shared library, by calling the `unexpose` function before
 calling `dlclose`.
+- Graphical libraries `.so` files MUST export a `getType` function returning
+`DLType::GRAPHICAL`.
+- Game `.so` files MUST export an `getType` function returning `DLType::GAME`.
 
 
 ## Keep your interfaces up to date more easily
