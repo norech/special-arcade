@@ -24,9 +24,9 @@ class ICanvas;
 class ISprite {
     virtual ~ISprite() = default;
 
-    virtual void init();
+    virtual void init() = 0;
 
-    virtual void destroy();
+    virtual void destroy() = 0;
 
     virtual void setRect(const IntRect& rect) = 0;
 
@@ -34,13 +34,13 @@ class ISprite {
 
     virtual void setTexturePath(const std::string& texturePath) = 0;
 
-    virtual const std::string& getTexturePath();
+    virtual const std::string& getTexturePath() = 0;
 
-    virtual const IntRect& getRect();
+    virtual const IntRect& getRect() = 0;
 
-    virtual const IColor& getFallbackColor();
+    virtual const IColor& getFallbackColor() = 0;
 
-    virtual void draw(ICanvas* canvas);
+    virtual void draw(ICanvas* canvas) = 0;
 };
 
 }  // namespace arc::grph
