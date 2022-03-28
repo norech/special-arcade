@@ -10,9 +10,8 @@
 #include "../common/Event.hpp"
 #include "../common/IColor.hpp"
 #include "../common/IntRect.hpp"
-#include "./CanvasCapacity.hpp"
 
-namespace arc::grph {
+namespace arc::game {
 
 class ICanvas;
 
@@ -43,4 +42,4 @@ class ISprite {
     virtual void draw(ICanvas* canvas) = 0;
 };
 
-}  // namespace arc::grph
+}  // namespace arc::game

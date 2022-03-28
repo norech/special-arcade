@@ -5,8 +5,8 @@
 #pragma once
 
 #include "../common/IColor.hpp"
+#include "../game/ISprite.hpp"
 #include "./CanvasCapacity.hpp"
-#include "./ISprite.hpp"
 
 namespace arc::grph {
 
@@ -57,7 +57,7 @@ public:
      * A sprite may represent a single image, or use the fallback color if
      * sprites are not supported.
      */
-    virtual void drawSprite(const ISprite& sprite) = 0;
+    virtual void drawSprite(const game::ISprite& sprite) = 0;
 };
 
 }  // namespace arc::grph
