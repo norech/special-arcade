@@ -38,8 +38,6 @@ class ISprite {
     virtual const IntRect& getRect() = 0;
 
     virtual const IColor& getFallbackColor() = 0;
-
-    virtual void draw(ICanvas* canvas) = 0;
 };
 
 }  // namespace arc::game
