@@ -156,7 +156,7 @@ public:
 }  // namespace arc
 ```
 
-# Core loader
+# Core loader (deprecated)
 
 ```cpp
 int main(void)
@@ -183,7 +183,7 @@ int main(void)
 }
 ```
 
-# Basic core loader with graphical library switch
+# Basic core loader with graphical library switch (deprecated)
 
 ```cpp
 int main(void)
@@ -226,6 +226,33 @@ int main(void)
 
     GraphicLoader::unexposeAndClose(graphic);
     GameLoader::unexposeAndClose(game);
+    return 0;
+}
+```
+
+# Basic core loader with a manager
+
+```cpp
+int main(void)
+{
+    MyManager manager; // manager implements IManager
+
+    manager.loadGame("./lib/arcade_pacman.so");
+    manager.loadGraphic("./lib/arcade_sdl.so");
+
+    // init the game then the graphic, then load the graphic lib into the game
+    manager.init();
+
+    // loop until the graphic is closed
+    while (manager.canUpdate()) {
+        // update the game, handle the events and render the graphic
+        // switches the graphic library if needed
+        manager.update();
+    }
+
+    // unloads the graphic from the game and
+    // destroys both the graphic and the game
+    manager.destroy();
     return 0;
 }
 ```

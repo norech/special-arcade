@@ -15,6 +15,7 @@ private:
 
     std::shared_ptr<Canvas> _canvas; // ICanvas implementation
     Palette _palette; // IPalette implementation
+    Manager _manager; // IManager implementation
 
 public:
     Game() = default;
@@ -28,7 +29,7 @@ public:
     void update(float dt) override {
         Event event;
 
-        while (_display->pollEvent(event)) {
+        while (_manager->pollEvent(event)) {
             if (event.type == Event::QUIT) {
                 _display->close();
             }
