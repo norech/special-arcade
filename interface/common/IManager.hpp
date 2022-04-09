@@ -48,12 +48,12 @@ public:
      * @brief Saves the high score for the specified identifier.
      */
     virtual void setHighScore(const std::string& scoreIdentifier,
-                              int score) = 0;
+                              long score) = 0;
 
     /**
      * @brief Gets the high score for the specified identifier
      */
-    virtual void getHighScore(const std::string& scoreIdentifier) = 0;
+    virtual long getHighScore(const std::string& scoreIdentifier) = 0;
 
     /**
      * @brief Sets the player name
